@@ -12,7 +12,7 @@ public class UserVO {
 	private int age;
 	private String addr;
 	
-	public UserVO() {
+	public UserVO() { //ㅇㄹㅇㄹ
 	}
 //	
 //	public UserVO(String name, int age) {
