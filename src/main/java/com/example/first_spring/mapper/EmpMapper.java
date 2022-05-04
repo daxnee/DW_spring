@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.first_spring.vo.EmpVO;
 
 @Mapper 
-public interface MainMapper {
+public interface EmpMapper {
 	
 //	emp의 사원데이터를 전부 다 가져오기
 	/**
