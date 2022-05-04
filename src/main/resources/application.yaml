@@ -1,0 +1,16 @@
+
+#MyBatis 설정
+mybatis:
+   mapper-locations: classpath:/sqlmap/sqlmapper_*.xml # *:전체를 다 불러오겠다.
+   type-aliases-package: com.example.first_spring.vo #sql 결과가 vo로 리턴된다, VO경로를 지정해줌
+   
+#MySQL 접속정보 설정
+spring:
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver # 이렇게 설정하면 스프링과 sql이 서로 접속할 수 있음
+      url: jdbc:mysql://localhost:3306/dw?useUnicode=true&charaterEncoding=utf-8&serverTimezone=UTC #내 ip 주소
+      username: root # 디비버 -> localhost -> edit connection 
+      password: 1793
+   
+   #이제 db를 연동하려면 스프링한테 알려줄 쿼리를 작성해야 함 그래야 스프링이 알 수 있음 => sql을 담을 폴더(패키지)를 생성해서 쿼리를 작성해주자
+   
