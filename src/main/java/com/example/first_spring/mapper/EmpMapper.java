@@ -3,6 +3,7 @@ package com.example.first_spring.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.first_spring.vo.EmpVO;
 
@@ -16,8 +17,25 @@ public interface EmpMapper {
 	 */
 	public List<EmpVO> getEmpList();
 	
-	public EmpVO getEmp();
+	public List<EmpVO> getEmpName();
 	
+	public List<EmpVO> getEmpComm();
 	
+	public List<EmpVO> getEmpHireDate();
+	
+	public EmpVO getEmp(int empno);
+	
+	public List<EmpVO> selectEmpWhereJobAndSal(
+		@Param("job") String job,
+		@Param("sal") int sal);
+
+	public List<EmpVO> selectEmpHowSal(int sal);
+
+	public List<EmpVO> selectEmpMgr();
+	
+	public List<EmpVO> selectEmpHiredate(String hiredate);
 	
 }
+
+
+

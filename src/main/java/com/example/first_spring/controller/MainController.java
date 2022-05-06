@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.first_spring.service.MainService;
+import com.example.first_spring.service.EmpService;
 import com.example.first_spring.vo.UserVO;
 
 @RestController //  이 클래스는 url을 요청받는 곳이야~ 라고 인식해줌 
 public class MainController {
 	@Autowired // new로 인스턴스화 할 필요가 없게 된다.
-	private MainService service; // import 해주기
+	private EmpService service; // import 해주기
 	
 	@GetMapping("/index") // / : index라는 주소(url)를 요청하면 call() 메소드를 실행할게
 	public String call() {
@@ -49,10 +49,10 @@ public class MainController {
 		return vo;
 	}
 	
-	@GetMapping("/userList")
-	public List<UserVO> callUserlist(){
-		return service.getUserList();
-	}
+//	@GetMapping("/userList")
+//	public List<UserVO> callUserlist(){
+//		return service.getUserList();
+//	}
 	
 	
 	
