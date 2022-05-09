@@ -62,6 +62,7 @@
 	and SAL > #{sal}
 	</select>
 	
+	
 	<select id="selectEmpMgr" resultType="EmpVO">
 	select
 	*
