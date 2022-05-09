@@ -10,7 +10,6 @@
 			job
 		FROM emp
 	</select>
-<<<<<<< HEAD
 	
 	<select id="getEmp" resultType="EmpVO">
 	select
@@ -52,9 +51,8 @@
 	from 
 	emp
 	where date_format(HIREDATE, '%m') = '12'
+	</select>
 		
-		
-=======
 
 	
 	<select id="getEmpName" resultType="EmpVO">
@@ -62,7 +60,6 @@
 	*
 	FROM emp
 	WHERE ename LIKE "%LL%";
->>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 	</select>
 	
 	<select id="getEmpComm" resultType="EmpVO">
@@ -161,4 +158,5 @@
 		comm = #{comm}
 		where empno = #{empno}
 	</update>
+	
 </mapper>

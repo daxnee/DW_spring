@@ -25,12 +25,14 @@ public interface EmpMapper {
 	public List<EmpVO> selectEmpMaxSal(String hiredate);
 	
 	public List<EmpVO> selectEmpMax(String hiredate);
+	
 	public List<EmpVO> getEmpComm();
 	
 	public List<EmpVO> getEmpHireDate();
 	
 	public EmpVO getEmp(int empno);
 	
+	//0509문제1
 	public List<EmpVO> selectEmpWhereJobAndSal(
 		@Param("job") String job,
 		@Param("sal") int sal); 
@@ -42,19 +44,14 @@ public interface EmpMapper {
 	
 	public List<EmpVO> selectEmpHiredate(String hiredate);
 
-	//insert
+	//insert 
 	public int insertEmp(EmpVO empVO);
-	
+
 	//delete
 	public int deleteEmp(int empno);
 	
 	//update
 	public int updateEmp(EmpVO empVO);
-	
-	//0509문제1
-	public List<EmpVO> selectEnameJobComm(
-			@Param("job") String job,
-			@Param("sal") int sal); 
 	
 }
 

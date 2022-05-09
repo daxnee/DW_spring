@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-=======
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.first_spring.service.EmpService;
 import com.example.first_spring.vo.EmpVO;
-import com.example.first_spring.vo.UserVO;
 
 @RestController
 public class EmpController {
@@ -33,20 +30,11 @@ public class EmpController {
 		return empService.getEmpName();
 	}
 	
-	@GetMapping("/emp/sal/{sal}")
-	public List<EmpVO> callEmpSal(@PathVariable("sal") int sal){
-		return empService.SelectEmpSal(sal);
-	}
-	
 	@GetMapping("/emp/hiredate/year/{year}")
 	public List<EmpVO> callEmpMaxSal(@PathVariable("year")String hiredate){
 		return empService.selectEmpMaxSal(hiredate);
 	}
 	
-	@GetMapping("/emp/hiredate/{hire}")
-	public List<EmpVO> callEmpMax(@PathVariable("hire")String hiredate){
-		return empService.selectEmpMax(hiredate);
-	}
 	@GetMapping("/empComm")
 	public List<EmpVO> callEmpComm(){
 		return empService.getEmpComm();
@@ -64,15 +52,11 @@ public class EmpController {
 		return empService.getEmp(empno);
 	}
 	
-	@GetMapping("emp/sal/{sal}")
-	public List<EmpVO> callEmpSal(@PathVariable("sal")int sal){
-		return empService.selectEmpHowSal(sal);
-	}
-	
-//	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
-//	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
-//	return empService.selectEmpWhereJobAndSal(job, sal);
+//	@GetMapping("emp/sal/{sal}")
+//	public List<EmpVO> callEmpSal(@PathVariable("sal")int sal){
+//		return empService.selectEmpHowSal(sal);
 //	}
+	
 	
 	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
 	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
@@ -92,7 +76,7 @@ public class EmpController {
 	
 	//emp테이블에 insert해보기 
 	//PostMapping : 중요한 정보를 보내거나, 데이터를 보낼 때 post 사용 ex) 회원가입
-	//RequestBody가 파라미터로 넘어오는 VO 대신 new해줌 
+	//RequestBody가 파라미터로 넘어오는 EmpVO를 대신 new해줌 
 	@PostMapping("/emp") // 위에 같은 url 주소가 있지만 http 메소드 종류가 다르기 때문에 오류가 안 난다.
 	//삽입
 	public int callEmpSet(@RequestBody EmpVO empVO) { // 데이터를 EmpVO에 맞춰서 보내겠다

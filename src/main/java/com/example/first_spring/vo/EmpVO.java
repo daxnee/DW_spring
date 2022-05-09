@@ -12,10 +12,8 @@ public class EmpVO { // extends DeptVO {
 	private int sal;
 	private int comm;
 	private int deptno;
-<<<<<<< HEAD
-=======
+
 //	private DeptVO deptVO;
->>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 }
 
 

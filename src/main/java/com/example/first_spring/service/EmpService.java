@@ -33,6 +33,10 @@ public class EmpService {
 		return empMapper.getEmpHireDate();
 	}
 	
+	public List<EmpVO> selectEmpMaxSal(String hiredate){
+		return empMapper.selectEmpMaxSal(hiredate);
+	}
+	
 	public EmpVO getEmp(int empno) {
 		return empMapper.getEmp(empno);
 	}
