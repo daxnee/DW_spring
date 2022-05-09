@@ -54,13 +54,6 @@ public class MainController {
 		return service.getUserList();
 	}
 	
-	
-	
-	
-	
-
-		 
-		
 //		UserVO u4 = new UserVO("김라라" , 22); // 방법2
 //		list.add(u4);
 //		return list;

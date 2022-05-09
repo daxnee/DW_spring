@@ -18,6 +18,9 @@ public interface EmpMapper {
 	
 	public EmpVO getEmp();
 	
+	public List<EmpVO> SelectEmpSal(int sal);
+
+	public List<EmpVO> selectEmpMaxSal(String hiredate);
 	
-	
+	public List<EmpVO> selectEmpMax(String hiredate);
 }
