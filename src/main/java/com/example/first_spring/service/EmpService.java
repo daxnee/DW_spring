@@ -25,35 +25,6 @@ public class EmpService {
 		return empMapper.getEmpName();
 	}
 	
-<<<<<<< HEAD
-	public List<EmpVO> SelectEmpSal(int sal){
-		return empMapper.SelectEmpSal(sal);
-	}
-	
-	public List<EmpVO> selectEmpMaxSal(String hiredate){
-		return empMapper.selectEmpMaxSal(hiredate);
-	}
-	
-	public List<EmpVO> selectEmpMax(String hiredate){
-		int MaxSal=0;
-		
-		List<EmpVO> list = new ArrayList<EmpVO>();
-		for(int i=0; i<list.size(); i++) {
-			int sal = list.get(i).getSal();		
-			if(MaxSal < sal) {
-				MaxSal = sal;
-				MaxSal = empMapper.selectEmpMax(hiredate).get(i).getSal();
-			}
-		}
-		for(int i=0; i<list.size(); i++) {
-			if(MaxSal == list.get(i).getSal()) {
-				System.out.println(empMapper.selectEmpMax(hiredate));
-				return list;
-			}
-		}
-				return list;
-	}
-=======
 	public List<EmpVO> getEmpComm(){
 		return empMapper.getEmpComm();
 	}
@@ -143,5 +114,4 @@ public class EmpService {
 	
 	
 		
->>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 }
