@@ -5,14 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
 =======
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
->>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.first_spring.service.EmpService;
@@ -35,7 +33,6 @@ public class EmpController {
 		return empService.getEmpName();
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/emp/sal/{sal}")
 	public List<EmpVO> callEmpSal(@PathVariable("sal") int sal){
 		return empService.SelectEmpSal(sal);
@@ -50,7 +47,6 @@ public class EmpController {
 	public List<EmpVO> callEmpMax(@PathVariable("hire")String hiredate){
 		return empService.selectEmpMax(hiredate);
 	}
-=======
 	@GetMapping("/empComm")
 	public List<EmpVO> callEmpComm(){
 		return empService.getEmpComm();
@@ -122,5 +118,4 @@ public class EmpController {
 	
 	
 	
->>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 }

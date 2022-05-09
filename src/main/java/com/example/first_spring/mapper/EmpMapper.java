@@ -20,13 +20,11 @@ public interface EmpMapper {
 	
 	public List<EmpVO> getEmpName();
 	
-<<<<<<< HEAD
 	public List<EmpVO> SelectEmpSal(int sal);
 
 	public List<EmpVO> selectEmpMaxSal(String hiredate);
 	
 	public List<EmpVO> selectEmpMax(String hiredate);
-=======
 	public List<EmpVO> getEmpComm();
 	
 	public List<EmpVO> getEmpHireDate();
@@ -58,7 +56,6 @@ public interface EmpMapper {
 			@Param("job") String job,
 			@Param("sal") int sal); 
 	
->>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 }
 
 
