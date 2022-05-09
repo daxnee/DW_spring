@@ -3,7 +3,7 @@ package com.example.first_spring.vo;
 import lombok.Data;
 
 @Data
-public class EmpVO {
+public class EmpVO { // extends DeptVO {
 	private int empno;
 	private String ename;
 	private String job;
@@ -12,6 +12,7 @@ public class EmpVO {
 	private int sal;
 	private int comm;
 	private int deptno;
+//	private DeptVO deptVO;
 }
 
 

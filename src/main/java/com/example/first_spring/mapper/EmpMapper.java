@@ -15,6 +15,7 @@ public interface EmpMapper {
 	 * @return
 	 * comment : emp테이블 전체사원 조회
 	 */
+	
 	public List<EmpVO> getEmpList();
 	
 	public List<EmpVO> getEmpName();
@@ -27,13 +28,28 @@ public interface EmpMapper {
 	
 	public List<EmpVO> selectEmpWhereJobAndSal(
 		@Param("job") String job,
-		@Param("sal") int sal);
+		@Param("sal") int sal); 
+	// 파라미터가 2개 이상일때는 @Param 사용!
 
 	public List<EmpVO> selectEmpHowSal(int sal);
 
 	public List<EmpVO> selectEmpMgr();
 	
 	public List<EmpVO> selectEmpHiredate(String hiredate);
+
+	//insert
+	public int insertEmp(EmpVO empVO);
+	
+	//delete
+	public int deleteEmp(int empno);
+	
+	//update
+	public int updateEmp(EmpVO empVO);
+	
+	//0509문제1
+	public List<EmpVO> selectEnameJobComm(
+			@Param("job") String job,
+			@Param("sal") int sal); 
 	
 }
 

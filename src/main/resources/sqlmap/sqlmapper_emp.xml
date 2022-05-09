@@ -47,10 +47,15 @@
 	
 	<select id="selectEmpWhereJobAndSal" resultType="EmpVO">
 	select
-	*
+		empno,
+		ename,
+		job,
+		comm
 	from emp
-	where
-	job = #{job} and sal >= #{sal}
+	WHERE
+		job = #{job} 
+	AND
+		sal >= #{sal}
 	</select>
 	
 	<select id="selectEmpHowSal" resultType="EmpVO">
@@ -77,4 +82,37 @@
 	WHERE DATE_FORMAT(HIREDATE,'%Y') = #{hiredate};
 	
 	</select>
+	
+	 <!-- 220509 -->
+	 <!-- insert -->
+	 <!-- Oracle은 Mybatis Insert 할 때 PK문법이 다름(시퀀스를 추가해야함) -->
+	<insert id="insertEmp">
+	
+	INSERT INTO emp
+	(
+		empno,
+		ename,
+		deptno,
+		hiredate
+	) 
+	VALUES
+	(
+		#{empno},
+		#{ename},
+		#{deptno},
+		now()
+	)
+	</insert>
+	
+	<delete id="deleteEmp">
+	DELETE FROM emp
+	WHERE empno = #{empno}
+	</delete>
+	
+	<update id="updateEmp">
+	update emp
+	set 
+		comm = #{comm}
+		where empno = #{empno}
+	</update>
 </mapper>
