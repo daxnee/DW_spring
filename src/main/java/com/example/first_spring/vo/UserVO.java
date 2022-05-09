@@ -12,9 +12,9 @@ public class UserVO {
 	private int age;
 	private String addr;
 	
-	public UserVO() { //ㅇㄹㅇㄹ
+	public UserVO() { 
 	}
-//	
+	
 //	public UserVO(String name, int age) {
 //		this.name = name; //@AllArgsConstructor가 대신해줌
 //		this.age = age;

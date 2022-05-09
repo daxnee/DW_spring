@@ -2,7 +2,6 @@
 <mapper namespace="com.example.first_spring.mapper.EmpMapper">
 	<select id="getEmpList" resultType="EmpVO"> <!--  resultType="EmpVO : 리턴타입이 EmpVO -->
 		<!-- id : 메소드이름 -->
-<!-- ctrl+space : 주석  --> 
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <!-- 대소문자 구분 안함. 대신 오타 주의 -->
 		SELECT
@@ -11,6 +10,7 @@
 			job
 		FROM emp
 	</select>
+<<<<<<< HEAD
 	
 	<select id="getEmp" resultType="EmpVO">
 	select
@@ -54,5 +54,111 @@
 	where date_format(HIREDATE, '%m') = '12'
 		
 		
+=======
+
+	
+	<select id="getEmpName" resultType="EmpVO">
+	SELECT
+	*
+	FROM emp
+	WHERE ename LIKE "%LL%";
+>>>>>>> 353ee402ba4ce3d090965040a485def9090dc51b
 	</select>
+	
+	<select id="getEmpComm" resultType="EmpVO">
+	SELECT
+		ename,
+		comm
+	FROM emp
+	WHERE 
+		comm is null; 
+	</select>
+	
+	<select id="getEmpHireDate" resultType="EmpVO">
+	select
+	ename,
+	hiredate
+	FROM emp
+	WHERE hiredate between "1980-12-17" AND
+	"1982-01-23"; 
+	</select>
+	
+	<select id="getEmp" resultType="EmpVO">
+	select
+		*
+	FROM emp
+	WHERE 
+		empno = #{empNo}
+	</select>
+	
+	<select id="selectEmpWhereJobAndSal" resultType="EmpVO">
+	select
+		empno,
+		ename,
+		job,
+		comm
+	from emp
+	WHERE
+		job = #{job} 
+	AND
+		sal >= #{sal}
+	</select>
+	
+	<select id="selectEmpHowSal" resultType="EmpVO">
+	select
+	ENAME,
+	SAL 
+	FROM emp
+	WHERE DEPTNO in (10,30)
+	and SAL > #{sal}
+	</select>
+	
+	
+	<select id="selectEmpMgr" resultType="EmpVO">
+	select
+	*
+	FROM emp
+	WHERE MGR is null;
+	</select>
+	
+	<select id="selectEmpHiredate" resultType="EmpVO">
+	SELECT
+		*
+	FROM emp
+	WHERE DATE_FORMAT(HIREDATE,'%Y') = #{hiredate};
+	
+	</select>
+	
+	 <!-- 220509 -->
+	 <!-- insert -->
+	 <!-- Oracle은 Mybatis Insert 할 때 PK문법이 다름(시퀀스를 추가해야함) -->
+	<insert id="insertEmp">
+	
+	INSERT INTO emp
+	(
+		empno,
+		ename,
+		deptno,
+		hiredate
+	) 
+	VALUES
+	(
+		#{empno},
+		#{ename},
+		#{deptno},
+		now()
+	)
+	</insert>
+	
+	<delete id="deleteEmp">
+	DELETE FROM emp
+	WHERE empno = #{empno}
+	</delete>
+	
+	<update id="updateEmp">
+	update emp
+	set 
+		comm = #{comm}
+		where empno = #{empno}
+	</update>
 </mapper>
