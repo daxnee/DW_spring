@@ -104,8 +104,8 @@ public class EmpService {
 	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpUpdateCount(EmpVO empVO) {
 		int rows = empMapper.updateEmp(empVO); // 몇 행 update 되었는지 리턴
-		return rows;
-//		 return empMapper.updateEmp(vo); //이것도 가능
+		return rows; 
+		//return empMapper.updateEmp(vo); //이것도 가능
 	}
 	
 	//0509 문제1

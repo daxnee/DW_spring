@@ -80,12 +80,6 @@ public class EmpController {
 	@PostMapping("/emp") // 위에 같은 url 주소가 있지만 http 메소드 종류가 다르기 때문에 오류가 안 난다.
 	//삽입
 	public int callEmpSet(@RequestBody EmpVO empVO) { // 데이터를 EmpVO에 맞춰서 보내겠다
-		 System.out.println("사원이름은 : "+ empVO.getEname());
-		 System.out.println("사원번호는 : "+ empVO.getEmpno());
-		 System.out.println("사원직책은 : " + empVO.getJob());
-		 System.out.println("사원급여는 : " +  empVO.getSal());
-		 System.out.println("사원입사일은 : " + empVO.getHiredate());
-		 System.out.println("사원부서번호는 : " + empVO.getDeptno());
 		 //  postman으로 전송시 필드변수 이름에 오타가 나면 데이터가 null뜬다.
 		 return empService.setEmpInfo(empVO); 
 	}
