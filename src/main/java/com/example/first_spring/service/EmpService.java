@@ -20,7 +20,6 @@ public class EmpService {
 		return empMapper.getEmpList();	
 	}
 	
-	
 	public List<EmpVO> getEmpName() {
 		return empMapper.getEmpName();
 	}
