@@ -26,7 +26,7 @@ public interface EmpMapper {
 	
 	public List<EmpVO> selectEmpMax(String hiredate);
 	
-	public List<EmpVO> getEmpComm();
+	public List<EmpVO> getEmpComm();//
 	
 	public List<EmpVO> getEmpHireDate();
 	
