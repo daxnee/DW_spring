@@ -57,12 +57,10 @@ public class EmpController {
 //		return empService.selectEmpHowSal(sal);
 //	}
 	
-	
 	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
 	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
 	return empService.selectEmpWhereJobAndSal(job, sal);
 	}
-	
 	
 	@GetMapping("/emp/mgr")
 	public List<EmpVO> callEmpSal(){
