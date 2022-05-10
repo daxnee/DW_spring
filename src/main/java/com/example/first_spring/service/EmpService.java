@@ -1,6 +1,5 @@
 package com.example.first_spring.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +15,6 @@ public class EmpService {
 	@Autowired
 	private EmpMapper empMapper;
 	
-	
-	public List<EmpVO> getAllempList(){
-		return empMapper.getEmpList();	
-	}
-	
-	public List<EmpVO> getEmpName() {
-		return empMapper.getEmpName();
-	}
-	
-	public List<EmpVO> getEmpComm(){
-		return empMapper.getEmpComm();
-	}
-	
-	public List<EmpVO> getEmpHireDate(){
-		return empMapper.getEmpHireDate();
-	}
 	
 	public List<EmpVO> selectEmpMaxSal(String hiredate){
 		return empMapper.selectEmpMaxSal(hiredate);
@@ -76,6 +59,7 @@ public class EmpService {
 		return empMapper.selectEmpMgr();
 	}
 	
+	//0509 문제1
 	public List<EmpVO> selectEmpHiredate(String hiredate){
 		List<EmpVO> list = empMapper.selectEmpHiredate(hiredate);
 		int size = list.size();
@@ -89,10 +73,17 @@ public class EmpService {
 	
 	//rollbackFor: 이전 commit으로 돌아감
 	//Exception : 모든에러를 잡아준다.
-	
 	//insert
+	//0510 문제1(2) 
+	//emp에 없는 부서번호를 찾아서 해당 부서 번호로 insert하기
 	@Transactional(rollbackFor = {Exception.class})
 	public int setEmpInfo(EmpVO empVO) {
+		//1. 없는 부서번호(40)를 찾아주는 작업
+		EmpVO vo = empMapper.selectDeptNo();// deptno가 40인 애들
+		int deptNo = empVO.getDeptno();
+		empVO.setDeptno(deptNo);
+		// --- 부서 번호 40을 찾았고
+		//2. insert 해야함
 		int rows = empMapper.insertEmp(empVO); // 몇 행 insert 되었는지 리턴 
 		return rows;
 	}
@@ -104,6 +95,7 @@ public class EmpService {
 		return rows; // 몇 행 delete 되었는지 리턴
 	}
 	
+	
 	//update
 	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpUpdateCount(EmpVO empVO) {
@@ -112,10 +104,10 @@ public class EmpService {
 		//return empMapper.updateEmp(vo); //이것도 가능
 	}
 	
-	//0509 문제1
+	public EmpVO getEmpDeptNo() {
+		return empMapper.selectDeptNo();
+	}
 
-
-	
-	
+	//0510 문제2
 		
 }

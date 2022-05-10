@@ -16,9 +16,6 @@ public interface EmpMapper {
 	 * comment : emp테이블 전체사원 조회
 	 */
 	
-	public List<EmpVO> getEmpList();
-	
-	public List<EmpVO> getEmpName();
 	
 	public List<EmpVO> SelectEmpSal(int sal);
 
@@ -29,6 +26,7 @@ public interface EmpMapper {
 	public List<EmpVO> getEmpComm();
 	
 	public List<EmpVO> getEmpHireDate();
+	
 	
 	public EmpVO getEmp(int empno);
 	
@@ -45,14 +43,18 @@ public interface EmpMapper {
 	public List<EmpVO> selectEmpHiredate(String hiredate);
 
 	//insert 
+	//0510 문제1(2)
 	public int insertEmp(EmpVO empVO);
 
-	//delete
+	//delete 
 	public int deleteEmp(int empno);
 	
 	//update
 	public int updateEmp(EmpVO empVO);
-	
+	//d
+	//0510 문제1() 
+	// 1. emp에 없는 부서번호(40)를 찾아서 @postMapping으로 해당 부서번호로 insert하기 
+	public EmpVO selectDeptNo();
 }
 
 
