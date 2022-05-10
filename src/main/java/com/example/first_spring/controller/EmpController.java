@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.first_spring.service.EmpService;
@@ -20,43 +21,23 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-	@GetMapping("/emp")
-	public List<EmpVO> callEmpList(){
-		return empService.getAllempList();
-	}
-	
-	@GetMapping("/empNameL")
-	public List<EmpVO> callEmpName() {
-		return empService.getEmpName();
-	}
-	
-	@GetMapping("/emp/hiredate/year/{year}")
-	public List<EmpVO> callEmpMaxSal(@PathVariable("year")String hiredate){
-		return empService.selectEmpMaxSal(hiredate);
-	}
-	
-	@GetMapping("/empComm")
-	public List<EmpVO> callEmpComm(){
-		return empService.getEmpComm();
-	}
-	
-	@GetMapping("/empHireDate")
-	public List<EmpVO> callEmpHireDate(){
-		return empService.getEmpHireDate();
-	}
-	
+
 	// 파라미터 넣어보기 
 	// @PathVariable : {}로 들어온 값을 파라미터에 대입
 	@GetMapping("/emp/no/{empNo}")
 	public EmpVO callEmp(@PathVariable("empNo") int empno) {
 		return empService.getEmp(empno);
 	}
+<<<<<<< HEAD
 	
 //	@GetMapping("emp/sal/{sal}")
 //	public List<EmpVO> callEmpSal(@PathVariable("sal")int sal){
 //		return empService.selectEmpHowSal(sal);
 //	}
 	
+=======
+		
+>>>>>>> refs/remotes/origin/main
 	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
 	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
 	return empService.selectEmpWhereJobAndSal(job, sal);
@@ -84,7 +65,7 @@ public class EmpController {
 	
 	// : 자원 삭제할 때 사용
 	@DeleteMapping("/emp/empno/{empno}") 
-	//저장
+	//삭제
 	public int callEmpRemove(@PathVariable("empno") int empno) {
 		return empService.getEmpRemoveCount(empno);
 	}
@@ -95,6 +76,33 @@ public class EmpController {
 		return empService.getEmpUpdateCount(empVO);
 	}
 	
+	// ------------0510------------
+	
+//	0510 쿼리스트링으로 getmapping
+	// tier?region=kr : region이라는 변수에 kr을 대입하겠다.
+	// 검색할때 많이 사용
+	// 검색시 : http://localhost:8080/tier?region=kr&name=다은
+	@GetMapping("/tier")
+	public String callTier(@RequestParam("region") String region, @RequestParam("name") String name) {
+		return region+", "+name;
+	}
+	
+	//board?page=1&pageSize=10&writer=양다은
+	//현재페이지 10개, 페이지 row 수 10줄, 작성자 양다은
+	
+	@GetMapping("/board")
+	public int callBoard(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("writer") String writer) {
+		System.out.println("현재 페이지는 : " + page);
+		System.out.println("한 페이지에 보여주는  row 수 : "+ pageSize );
+		System.out.println("작성자는 : " + writer);
+		return 0;
+	}
+	
+//	@DeleteMapping("/emp/sal/{sal}") 
+//	// 저장
+//	public int callEmpRemoveSal(@PathVariable("sal") int sal) {
+//		return empService.getEmpRemoveSal(sal);
+//	}
 	
 	
 	

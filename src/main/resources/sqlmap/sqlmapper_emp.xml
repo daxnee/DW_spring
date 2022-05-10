@@ -11,14 +11,6 @@
 		FROM emp
 	</select>
 	
-	<select id="getEmp" resultType="EmpVO">
-	select
-	ename,
-	sal,
-	empno
-	from emp
-	</select>
-	
 	<select id="SelectEmpSal" resultType="EmpVO">
 	select
 	*
@@ -53,7 +45,6 @@
 	where date_format(HIREDATE, '%m') = '12'
 	</select>
 		
-
 	
 	<select id="getEmpName" resultType="EmpVO">
 	SELECT
@@ -130,7 +121,7 @@
 	 <!-- insert -->
 	 <!-- Oracle은 Mybatis Insert 할 때 PK문법이 다름(시퀀스를 추가해야함) -->
 	<insert id="insertEmp">
-	
+	<!-- 0510 문제1(2) -->	
 	INSERT INTO emp
 	(
 		empno,
@@ -158,5 +149,23 @@
 		comm = #{comm}
 		where empno = #{empno}
 	</update>
+	
+	<!-- 0510  -->
+	<!-- 0510 문제1(1) -->
+	<select id="selectDeptNo" resultType="EmpVO">
+	select 
+		d.deptno
+	from emp as e 
+		right join dept as d 
+		ON e.DEPTNO = d.DEPTNO 
+	where 
+		e.deptno is null 
+	</select>
+	
+	<!-- 문제2 -->
+	<delete id="deleteEmpSal">
+	delete from emp 
+	where sal >= #{sal}
+	</delete>
 	
 </mapper>
