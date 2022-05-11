@@ -215,8 +215,8 @@
 	<if test='isMgr.equals("false")'>
 		AND mgr IS NULL
 	</if>
-	
 	</select>
+	<!-- postman => http://localhost:8080/emp/mgr/false -->
 	
 	<!-- 0511 문제1 -->
 	<select id="updateJobAndSal" resultType="EmpVO">
@@ -240,7 +240,7 @@
 		EMPNO = #{empno}
 	</select>
 	
-	<update id="updateEmpCommSal">
+	<update id="updateEmpSal">
 	update 
 		emp 
 	set

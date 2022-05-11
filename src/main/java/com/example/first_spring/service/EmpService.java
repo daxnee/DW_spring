@@ -112,6 +112,7 @@ public class EmpService {
 		return empMapper.selectEmpMgr(isMgr);
 	}
 	//0511 문제1
+	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpJobAndSal(EmpVO vo) {
 		return empMapper.updateJobAndSal(vo);
 	}
@@ -122,7 +123,9 @@ public class EmpService {
 	public int getEmpUpdateCommSal(int empno) {
 		//comm이 0이거나 null이면 
 		 EmpVO vo = empMapper.selectEmpCommSal(empno);
+		 //select를 받아옴
 		 int comm = vo.getComm();
+		 //받아온 select의 comm을 int comm에 넣어줌
 		 
 		 if(comm == 0) {
 			 int bonus = 500;

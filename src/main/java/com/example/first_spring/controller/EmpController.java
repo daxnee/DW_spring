@@ -99,8 +99,8 @@ public class EmpController {
 //	}
 	
 	// 0511 if문
-	@GetMapping("/emp/empno")
-		public List<EmpVO> callEmpIsMgrList(@PathVariable("ismgr") String isMgr){
+	@GetMapping("/emp/mgr/{isMgr}")
+		public List<EmpVO> callEmpIsMgrList(@PathVariable("isMgr") String isMgr){
 		return empService.getEmpIsMgrList(isMgr);
 		}
 	

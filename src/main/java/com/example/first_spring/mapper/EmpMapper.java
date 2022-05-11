@@ -56,12 +56,14 @@ public interface EmpMapper {
 	//public EmpVO selectDeptNo();
 	public EmpVO selectDeptNo();
 
-	public List<EmpVO> selectEmpMgr(@Param("ismgr") String isMgr);
+	public List<EmpVO> selectEmpMgr(@Param("isMgr") String isMgr);
 
 	//사원번호가 7902번인 사원 job을 SALESMAN, SAL을 3500으로 수정
 	public int updateJobAndSal(EmpVO vo);
 	
 	
+	
+	//-------------문제 2 ---------------
 	public int updateEmpSal(EmpVO vo);
 	//들어온 vo를 통해 update 실행
 	
