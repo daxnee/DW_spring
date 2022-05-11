@@ -28,25 +28,19 @@ public class EmpController {
 	public EmpVO callEmp(@PathVariable("empNo") int empno) {
 		return empService.getEmp(empno);
 	}
-<<<<<<< HEAD
 	
 //	@GetMapping("emp/sal/{sal}")
 //	public List<EmpVO> callEmpSal(@PathVariable("sal")int sal){
 //		return empService.selectEmpHowSal(sal);
 //	}
 	
-=======
 		
->>>>>>> refs/remotes/origin/main
 	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
 	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
 	return empService.selectEmpWhereJobAndSal(job, sal);
 	}
 	
-	@GetMapping("/emp/mgr")
-	public List<EmpVO> callEmpSal(){
-		return empService.selectEmpMgr();
-	}
+
 	
 	@GetMapping("/emp/hiredate/year/{year}")
 	public List<EmpVO> callEmpHiredate(@PathVariable("year") String hireYear){
@@ -87,9 +81,9 @@ public class EmpController {
 		return region+", "+name;
 	}
 	
+	
 	//board?page=1&pageSize=10&writer=양다은
 	//현재페이지 10개, 페이지 row 수 10줄, 작성자 양다은
-	
 	@GetMapping("/board")
 	public int callBoard(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("writer") String writer) {
 		System.out.println("현재 페이지는 : " + page);
@@ -104,9 +98,25 @@ public class EmpController {
 //		return empService.getEmpRemoveSal(sal);
 //	}
 	
+	// 0511 if문
+	@GetMapping("/emp/empno")
+		public List<EmpVO> callEmpIsMgrList(@PathVariable("ismgr") String isMgr){
+		return empService.getEmpIsMgrList(isMgr);
+		}
 	
-	
-	
-	
-	
+	//0511 문제1
+	@PatchMapping("/emp/empno")
+	public int callEmpSalJobUpdate(EmpVO vo) {
+		return empService.getEmpJobAndSal(vo);
+	}
+
+	//0511 문제2
+	@PatchMapping("emp/empno/{empno}")
+	public int callEmpSalUpdate(@PathVariable("empno") int empno) {
+		return empService.getEmpUpdateCommSal(empno);
+	}
 }
+	
+	
+	
+

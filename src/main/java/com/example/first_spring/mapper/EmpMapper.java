@@ -38,7 +38,6 @@ public interface EmpMapper {
 
 	public List<EmpVO> selectEmpHowSal(int sal);
 
-	public List<EmpVO> selectEmpMgr();
 	
 	public List<EmpVO> selectEmpHiredate(String hiredate);
 
@@ -54,8 +53,21 @@ public interface EmpMapper {
 	//d
 	//0510 문제1() 
 	// 1. emp에 없는 부서번호(40)를 찾아서 @postMapping으로 해당 부서번호로 insert하기 
+	//public EmpVO selectDeptNo();
 	public EmpVO selectDeptNo();
-}
 
+	public List<EmpVO> selectEmpMgr(@Param("ismgr") String isMgr);
+
+	//사원번호가 7902번인 사원 job을 SALESMAN, SAL을 3500으로 수정
+	public int updateJobAndSal(EmpVO vo);
+	
+	
+	public int updateEmpSal(EmpVO vo);
+	//들어온 vo를 통해 update 실행
+	
+	public EmpVO selectEmpCommSal(@Param("empno") int empno);
+	//empno 조회하는거라 EmpVO (pk이니까)
+	// {empno}로 조회
+} 
 
 

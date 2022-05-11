@@ -54,10 +54,7 @@ public class EmpService {
 	public List<EmpVO> selectEmpHowSal(int sal){
 		return empMapper.selectEmpHowSal(sal);
 	}
-	
-	public List<EmpVO> selectEmpMgr(){
-		return empMapper.selectEmpMgr();
-	}
+
 	
 	//0509 문제1
 	public List<EmpVO> selectEmpHiredate(String hiredate){
@@ -77,14 +74,14 @@ public class EmpService {
 	//0510 문제1(2) 
 	//emp에 없는 부서번호를 찾아서 해당 부서 번호로 insert하기
 	@Transactional(rollbackFor = {Exception.class})
-	public int setEmpInfo(EmpVO empVO) {
+	public int setEmpInfo(EmpVO vo) {
 		//1. 없는 부서번호(40)를 찾아주는 작업
-		EmpVO vo = empMapper.selectDeptNo();// deptno가 40인 애들
-		int deptNo = empVO.getDeptno();
-		empVO.setDeptno(deptNo);
+		EmpVO empVO = empMapper.selectDeptNo();// deptno가 40인 애들을 쿼리로 필터링
+		int deptNo = empVO.getDeptno(); //40인 데이터를 변수에 대입 (대입 안해도 되는데 디버깅이 힘듦)
+		vo.setDeptno(deptNo); //40인 애들이 set됨 Q.deptNo 변수에 대입 안하고 메소드 자체를 파라미터에 넣어도 되는건가?
 		// --- 부서 번호 40을 찾았고
 		//2. insert 해야함
-		int rows = empMapper.insertEmp(empVO); // 몇 행 insert 되었는지 리턴 
+		int rows = empMapper.insertEmp(vo); // 몇 행 insert 되었는지 리턴 
 		return rows;
 	}
 	
@@ -109,5 +106,32 @@ public class EmpService {
 	}
 
 	//0510 문제2
-		
+	
+	//0511 if문
+	public List<EmpVO> getEmpIsMgrList(String isMgr){
+		return empMapper.selectEmpMgr(isMgr);
+	}
+	//0511 문제1
+	public int getEmpJobAndSal(EmpVO vo) {
+		return empMapper.updateJobAndSal(vo);
+	}
+	
+	
+	//0511 문제2
+	@Transactional(rollbackFor = {Exception.class})
+	public int getEmpUpdateCommSal(int empno) {
+		//comm이 0이거나 null이면 
+		 EmpVO vo = empMapper.selectEmpCommSal(empno);
+		 int comm = vo.getComm();
+		 
+		 if(comm == 0) {
+			 int bonus = 500;
+			 int sal = vo.getSal();
+			 vo.setSal(sal + bonus); // 보너스 넣어줌
+			//update 로직 추가
+			 return empMapper.updateEmpSal(vo);
+		 }
+		return 0;
+	}
+	
 }

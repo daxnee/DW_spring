@@ -1,122 +1,139 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.first_spring.mapper.EmpMapper">
 	<select id="getEmpList" resultType="EmpVO"> <!--  resultType="EmpVO : 리턴타입이 EmpVO -->
-		<!-- id : 메소드이름 -->
+	<!-- 쿼리의 결과값을 EmpVO로 하겠다. -->
+	<!-- 결과값을 위 경로에 설정한 Mapper의 메소드(id="getEmpList")로 return -->
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <!-- 대소문자 구분 안함. 대신 오타 주의 -->
-		SELECT
-			empno,
-			ename,
-			job
-		FROM emp
+	SELECT 
+	  empno, 
+	  ename, 
+	  job 
+	FROM 
+	  emp
+
 	</select>
 	
 	<select id="SelectEmpSal" resultType="EmpVO">
-	select
-	*
-	from emp
-	where job = "SALESMAN" 
-		and 
-		sal >= #{sal}
+	select 
+	  * 
+	from 
+	  emp 
+	where 
+	  job = "SALESMAN" 
+	  and sal >= #{sal}
+
 	</select>
 	
 	<select id="selectEmpMaxSal" resultType="EmpVO">
-	--  문제 3. 급여가 가장 높은 사원 조회
-	select
-	ENAME,
-	sal 
-	from (
-		select 
-			max(sal) as maxSal
-			from emp
-			where date_format(HIREDATE, '%m') = #{HIREDATE}
-		)as e,
-		emp
-		where sal = e.maxSal
-		and date_format(HIREDATE,'%m') = #{HIREDATE} 
+	<!-- 문제 3. 급여가 가장 높은 사원 조회 -->
+	    select 
+      ENAME, 
+      sal 
+    from 
+      (
+        select 
+          max(sal) as maxSal 
+        from 
+          emp 
+        where 
+          date_format(HIREDATE, '%m') = #{HIREDATE}
+          ) as e, 
+      emp 
+    where 
+      sal = e.maxSal 
+      and date_format(HIREDATE, '%m') = #{HIREDATE}
 	</select>
 	
 	<select id="selectEmpMax" resultType="EmpVO">
-	select
-	ENAME,
-	sal
-	from 
-	emp
-	where date_format(HIREDATE, '%m') = '12'
+	select 
+      ENAME, 
+      sal 
+    from 
+      emp 
+    where 
+      date_format(HIREDATE, '%m') = '12'
 	</select>
 		
 	
 	<select id="getEmpName" resultType="EmpVO">
-	SELECT
-	*
-	FROM emp
-	WHERE ename LIKE "%LL%";
+	SELECT 
+      * 
+    FROM 
+      emp 
+    WHERE 
+      ename LIKE "%LL%";
+
 	</select>
 	
 	<select id="getEmpComm" resultType="EmpVO">
-	SELECT
-		ename,
-		comm
-	FROM emp
-	WHERE 
-		comm is null; 
+	SELECT 
+      ename, 
+      comm 
+    FROM 
+      emp 
+    WHERE 
+      comm is null;
 	</select>
 	
 	<select id="getEmpHireDate" resultType="EmpVO">
-	select
-	ename,
-	hiredate
-	FROM emp
-	WHERE hiredate between "1980-12-17" AND
-	"1982-01-23"; 
+	select 
+      ename, 
+      hiredate 
+    FROM 
+      emp 
+    WHERE 
+      hiredate between "1980-12-17" 
+      AND "1982-01-23";
+
 	</select>
 	
 	<select id="getEmp" resultType="EmpVO">
-	select
-		*
-	FROM emp
-	WHERE 
-		empno = #{empNo}
+	select 
+      * 
+    FROM 
+      emp 
+    WHERE 
+      empno = #{empNo}
+
 	</select>
 	
 	<select id="selectEmpWhereJobAndSal" resultType="EmpVO">
-	select
-		empno,
-		ename,
-		job,
-		comm
-	from emp
-	WHERE
-		job = #{job} 
-	AND
-		sal >= #{sal}
+	select 
+      empno, 
+      ename, 
+      job, 
+      comm 
+    from 
+      emp 
+    WHERE 
+      job = #{job} 
+      AND sal >= #{sal}
+
 	</select>
 	
 	<select id="selectEmpHowSal" resultType="EmpVO">
 	select
-	ENAME,
-	SAL 
-	FROM emp
-	WHERE DEPTNO in (10,30)
-	and SAL > #{sal}
+		ENAME,
+		SAL 
+	FROM 
+		emp
+	WHERE 
+		DEPTNO in (10,30)
+		AND SAL > #{sal}
 	</select>
 	
 	
-	<select id="selectEmpMgr" resultType="EmpVO">
-	select
-	*
-	FROM emp
-	WHERE MGR is null;
-	</select>
 	
 	<select id="selectEmpHiredate" resultType="EmpVO">
 	SELECT
 		*
-	FROM emp
-	WHERE DATE_FORMAT(HIREDATE,'%Y') = #{hiredate};
-	
+	FROM 
+		emp
+	WHERE 
+		DATE_FORMAT(HIREDATE,'%Y') = #{hiredate};
 	</select>
-	
+
 	 <!-- 220509 -->
 	 <!-- insert -->
 	 <!-- Oracle은 Mybatis Insert 할 때 PK문법이 다름(시퀀스를 추가해야함) -->
@@ -139,15 +156,20 @@
 	</insert>
 	
 	<delete id="deleteEmp">
-	DELETE FROM emp
-	WHERE empno = #{empno}
+	DELETE FROM 
+		emp
+	WHERE 
+		empno = #{empno}
 	</delete>
 	
 	<update id="updateEmp">
-	update emp
+	update 
+		emp
 	set 
-		comm = #{comm}
-		where empno = #{empno}
+		job = #{job}
+		sal = #{sal}
+	where 
+		empno = #{empno}
 	</update>
 	
 	<!-- 0510  -->
@@ -155,17 +177,75 @@
 	<select id="selectDeptNo" resultType="EmpVO">
 	select 
 		d.deptno
-	from emp as e 
-		right join dept as d 
-		ON e.DEPTNO = d.DEPTNO 
-	where 
+	FROM 
+		emp as e 
+		right join dept as d ON e.DEPTNO = d.DEPTNO 
+	WHERE 
 		e.deptno is null 
 	</select>
 	
 	<!-- 문제2 -->
 	<delete id="deleteEmpSal">
-	delete from emp 
-	where sal >= #{sal}
+	DELETE FROM
+		emp 
+	WHERE 
+		sal >= #{sal}
 	</delete>
 	
+	<!-- 0511  -->
+	<!-- if문 -->
+	
+	<!-- true 가 파라미터로 들어오면 사수 있는 사원 조회
+		false가 파라미터로 들어오면 사수 없는 사원 조회 -->
+	<select id="selectEmpMgr" resultType="EmpVO">
+	SELECT
+		empno,
+		ename,
+		mgr
+	FROM
+		emp
+	WHERE 
+		1=1
+		 <!--1=1 : and조건을 위한 의미 없는 구문 -->
+	<!-- test == if문의 중괄호 -->
+	<!-- MyBatis에는 boolean형이 없어서 문자로 비교해야 한다. -->
+	<if test='isMgr.equals("true")'> <!-- isMgr에 파라미터 값이 넘어옴  -->
+		AND mgr IS NOT NULL
+	</if>
+	<if test='isMgr.equals("false")'>
+		AND mgr IS NULL
+	</if>
+	
+	</select>
+	
+	<!-- 0511 문제1 -->
+	<select id="updateJobAndSal" resultType="EmpVO">
+	SELECT 
+		*
+	FROM 
+		emp
+	WHERE 
+		empno = #{empno}
+	</select>
+	
+	<!-- 0511 문제2 -->
+	<select id="selectEmpCommSal" resultType="EmpVO">
+	select 
+		empno,
+		sal,
+		comm
+	from 
+		emp
+	where 
+		EMPNO = #{empno}
+	</select>
+	
+	<update id="updateEmpCommSal">
+	update 
+		emp 
+	set
+		sal = #{sal}
+	where 
+	EMPNO = #{empno}
+	</update>
 </mapper>
