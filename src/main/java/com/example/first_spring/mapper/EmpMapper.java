@@ -1,6 +1,7 @@
 package com.example.first_spring.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -50,15 +51,24 @@ public interface EmpMapper {
 	
 	//update
 	public int updateEmp(EmpVO empVO);
-	//d
+	
+	
+	
 	//0510 문제1() 
 	// 1. emp에 없는 부서번호(40)를 찾아서 @postMapping으로 해당 부서번호로 insert하기 
 	//public EmpVO selectDeptNo();
 	public EmpVO selectDeptNo();
 
+	//0511 if문
 	public List<EmpVO> selectEmpMgr(@Param("isMgr") String isMgr);
+	//MyBatis에는 boolean 형이 없기 때문에 파라미터로 String을 받는다.
+	
+	public int updateEmpno(EmpVO vo); 
+	
 
-	//사원번호가 7902번인 사원 job을 SALESMAN, SAL을 3500으로 수정
+	
+	//----------------------0512
+	//문제1. 사원번호가 7902번인 사원 job을 SALESMAN, SAL을 3500으로 수정
 	public int updateJobAndSal(EmpVO vo);
 	
 	
@@ -70,6 +80,9 @@ public interface EmpMapper {
 	public EmpVO selectEmpCommSal(@Param("empno") int empno);
 	//empno 조회하는거라 EmpVO (pk이니까)
 	// {empno}로 조회
+	
+	
+	public List<Map<String, Object>> selectEmpMapList();
 } 
 
 

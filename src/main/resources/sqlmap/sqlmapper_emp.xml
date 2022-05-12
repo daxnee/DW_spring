@@ -192,9 +192,9 @@
 		sal >= #{sal}
 	</delete>
 	
+	
 	<!-- 0511  -->
 	<!-- if문 -->
-	
 	<!-- true 가 파라미터로 들어오면 사수 있는 사원 조회
 		false가 파라미터로 들어오면 사수 없는 사원 조회 -->
 	<select id="selectEmpMgr" resultType="EmpVO">
@@ -204,31 +204,34 @@
 		mgr
 	FROM
 		emp
-	WHERE 
-		1=1
+	WHERE 1=1
 		 <!--1=1 : and조건을 위한 의미 없는 구문 -->
 	<!-- test == if문의 중괄호 -->
 	<!-- MyBatis에는 boolean형이 없어서 문자로 비교해야 한다. -->
-	<if test='isMgr.equals("true")'> <!-- isMgr에 파라미터 값이 넘어옴  -->
-		AND mgr IS NOT NULL
-	</if>
-	<if test='isMgr.equals("false")'>
-		AND mgr IS NULL
-	</if>
+		<if test='isMgr.equals("true")'>
+			AND mgr IS NOT NULL
+		</if>
+		<if test='isMgr.equals("false")'>
+			AND mgr IS NULL
+		</if>
 	</select>
 	<!-- postman => http://localhost:8080/emp/mgr/false -->
+	
 	
 	<!-- 0511 문제1 -->
 	<select id="updateJobAndSal" resultType="EmpVO">
 	SELECT 
-		*
+		empno,
+		comm,
+		sal
 	FROM 
 		emp
 	WHERE 
 		empno = #{empno}
 	</select>
 	
-	<!-- 0511 문제2 -->
+	<!-- 0511 문제2 사원번호가 7844인 사원의 COMM이 0이거나 NULL이면 기존 급여에서 500을 추가. 
+	COMM이 있다면 0 리턴 -->
 	<select id="selectEmpCommSal" resultType="EmpVO">
 	select 
 		empno,
@@ -248,4 +251,17 @@
 	where 
 	EMPNO = #{empno}
 	</update>
+	
+	<!-- 0512 hashMap -->
+	<select id="selectEmpMapList" resultType="map">
+	SELECT
+		 empno,
+		 ename,
+		 job,
+		 sal,
+	 	e.deptno
+	 FROM emp as e INNER JOIN dept as d
+	 ON e.deptno = d.deptno
+	</select> 
+	
 </mapper>

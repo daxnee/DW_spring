@@ -1,3 +1,8 @@
+#제목과 버전 설정
+application:
+   version: 0.0.1 #소프트웨어에도 버전이 있다.
+   title: daxnee
+   
 
 #MyBatis 설정
 mybatis:

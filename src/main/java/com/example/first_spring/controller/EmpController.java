@@ -1,6 +1,7 @@
 package com.example.first_spring.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -87,7 +88,7 @@ public class EmpController {
 	@GetMapping("/board")
 	public int callBoard(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize, @RequestParam("writer") String writer) {
 		System.out.println("현재 페이지는 : " + page);
-		System.out.println("한 페이지에 보여주는  row 수 : "+ pageSize );
+		System.out.println("한 페이지에 보여주는 row 수 : "+ pageSize );
 		System.out.println("작성자는 : " + writer);
 		return 0;
 	}
@@ -114,6 +115,12 @@ public class EmpController {
 	@PatchMapping("emp/empno/{empno}")
 	public int callEmpSalUpdate(@PathVariable("empno") int empno) {
 		return empService.getEmpUpdateCommSal(empno);
+	}
+	
+	// List에 Map 담기
+	@GetMapping("/emp/map/list")
+	public List<Map<String, Object>> callEmpMapList(){
+		return empService.getEmpMapList();
 	}
 }
 	

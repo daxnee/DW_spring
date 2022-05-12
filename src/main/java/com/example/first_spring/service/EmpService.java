@@ -1,6 +1,7 @@
 package com.example.first_spring.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -111,10 +112,19 @@ public class EmpService {
 	public List<EmpVO> getEmpIsMgrList(String isMgr){
 		return empMapper.selectEmpMgr(isMgr);
 	}
+	
+	public int getUpdateEmpno(EmpVO vo) {
+		int rows = empMapper.updateEmpno(vo);
+		return rows;
+	}
+	
+	// -------------------------------------
+	
 	//0511 문제1
 	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpJobAndSal(EmpVO vo) {
-		return empMapper.updateJobAndSal(vo);
+		int rows = empMapper.updateJobAndSal(vo);
+		return rows;
 	}
 	
 	
@@ -137,4 +147,8 @@ public class EmpService {
 		return 0;
 	}
 	
+	
+	public List<Map<String, Object>> getEmpMapList(){
+		return empMapper.selectEmpMapList();
+	}
 }
