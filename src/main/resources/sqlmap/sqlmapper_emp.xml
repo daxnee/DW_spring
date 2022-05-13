@@ -5,13 +5,25 @@
 	<!-- 결과값을 위 경로에 설정한 Mapper의 메소드(id="getEmpList")로 return -->
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <!-- 대소문자 구분 안함. 대신 오타 주의 -->
+<!-- 0513 -->
 	SELECT 
 	  empno, 
 	  ename, 
 	  job 
 	FROM 
 	  emp
+	 ordey by 1 
 
+	</select>
+	
+	<!-- selectAllEmp -->
+	<select id="selectAllEmp" resultType="EmpVO">
+	SELECT 
+		 *
+	FROM 
+	  emp as e join dept as d
+	  on e.DEPTNO = d.DEPTNO
+	  ORDER BY empno ASC
 	</select>
 	
 	<select id="SelectEmpSal" resultType="EmpVO">
@@ -143,6 +155,7 @@
 	(
 		empno,
 		ename,
+		job,
 		deptno,
 		hiredate
 	) 
@@ -150,6 +163,7 @@
 	(
 		#{empno},
 		#{ename},
+		#{job},
 		#{deptno},
 		now()
 	)
@@ -185,11 +199,18 @@
 	</select>
 	
 	<!-- 문제2 -->
-	<delete id="deleteEmpSal">
-	DELETE FROM
+	<delete id=""> 
+	  DELETE FROM
 		emp 
 	WHERE 
 		sal >= #{sal}
+	</delete>
+	
+	<delete id="getEmpRemoveCount">
+	Delete from
+	emp
+	where
+	empno = #{empno}
 	</delete>
 	
 	
@@ -224,7 +245,7 @@
 		empno,
 		comm,
 		sal
-	FROM 
+	FROM
 		emp
 	WHERE 
 		empno = #{empno}
@@ -243,13 +264,15 @@
 		EMPNO = #{empno}
 	</select>
 	
-	<update id="updateEmpSal">
-	update 
+	<!-- 	//0513  -->
+	<update id="updateJobSal"> 
+	UPDATE 
 		emp 
-	set
+	SET
+		job = #{job},
 		sal = #{sal}
-	where 
-	EMPNO = #{empno}
+	WHERE 
+		empno = #{empno}
 	</update>
 	
 	<!-- 0512 hashMap -->

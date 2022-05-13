@@ -17,6 +17,7 @@ public interface EmpMapper {
 	 * comment : emp테이블 전체사원 조회
 	 */
 	
+	public List<EmpVO> selectAllEmp();
 	
 	public List<EmpVO> SelectEmpSal(int sal);
 
@@ -27,6 +28,8 @@ public interface EmpMapper {
 	public List<EmpVO> getEmpComm();//
 	
 	public List<EmpVO> getEmpHireDate();
+	
+	public List<EmpVO> getEmpRemoveCount(int empno);
 	
 	
 	public EmpVO getEmp(int empno);
@@ -71,8 +74,7 @@ public interface EmpMapper {
 	//문제1. 사원번호가 7902번인 사원 job을 SALESMAN, SAL을 3500으로 수정
 	public int updateJobAndSal(EmpVO vo);
 	
-	
-	
+
 	//-------------문제 2 ---------------
 	public int updateEmpSal(EmpVO vo);
 	//들어온 vo를 통해 update 실행
@@ -83,6 +85,9 @@ public interface EmpMapper {
 	
 	
 	public List<Map<String, Object>> selectEmpMapList();
+	
+	//0513 
+	public int updateJobSal(EmpVO vo);
 } 
 
 

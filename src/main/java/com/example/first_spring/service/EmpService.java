@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.first_spring.mapper.EmpMapper;
 import com.example.first_spring.vo.EmpVO;
@@ -16,8 +17,11 @@ public class EmpService {
 	@Autowired
 	private EmpMapper empMapper;
 	
+	public List<EmpVO> getAllEmp(){
+		return empMapper.selectAllEmp();
+	}
 	
-	public List<EmpVO> selectEmpMaxSal(String hiredate){
+	public List<EmpVO> getEmpMaxSal(String hiredate){
 		return empMapper.selectEmpMaxSal(hiredate);
 	}
 	
@@ -74,12 +78,13 @@ public class EmpService {
 	//insert
 	//0510 문제1(2) 
 	//emp에 없는 부서번호를 찾아서 해당 부서 번호로 insert하기
+	@CrossOrigin(origins = {"*"})
 	@Transactional(rollbackFor = {Exception.class})
 	public int setEmpInfo(EmpVO vo) {
 		//1. 없는 부서번호(40)를 찾아주는 작업
-		EmpVO empVO = empMapper.selectDeptNo();// deptno가 40인 애들을 쿼리로 필터링
-		int deptNo = empVO.getDeptno(); //40인 데이터를 변수에 대입 (대입 안해도 되는데 디버깅이 힘듦)
-		vo.setDeptno(deptNo); //40인 애들이 set됨 Q.deptNo 변수에 대입 안하고 메소드 자체를 파라미터에 넣어도 되는건가?
+//		EmpVO empVO = empMapper.selectDeptNo();// deptno가 40인 애들을 쿼리로 필터링
+//		int deptNo = empVO.getDeptno(); //40인 데이터를 변수에 대입 (대입 안해도 되는데 디버깅이 힘듦)
+//		vo.setDeptno(deptNo); //40인 애들이 set됨 Q.deptNo 변수에 대입 안하고 메소드 자체를 파라미터에 넣어도 되는건가?
 		// --- 부서 번호 40을 찾았고
 		//2. insert 해야함
 		int rows = empMapper.insertEmp(vo); // 몇 행 insert 되었는지 리턴 
@@ -120,7 +125,7 @@ public class EmpService {
 	
 	// -------------------------------------
 	
-	//0511 문제1
+	//0511 문제1 : 사원번호가 7844인 사원을 조회
 	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpJobAndSal(EmpVO vo) {
 		int rows = empMapper.updateJobAndSal(vo);
@@ -128,7 +133,9 @@ public class EmpService {
 	}
 	
 	
-	//0511 문제2
+	
+	// 0511 문제2 : 사원번호가 7844 comm이 0 이거나 null 이면 보너스 500추가
+	// 걔가 comm이 있으면 0을 리턴 
 	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpUpdateCommSal(int empno) {
 		//comm이 0이거나 null이면 
@@ -147,8 +154,14 @@ public class EmpService {
 		return 0;
 	}
 	
-	
+	// 0512
 	public List<Map<String, Object>> getEmpMapList(){
 		return empMapper.selectEmpMapList();
+	}
+	
+	//0513 사원수정
+	public int getApi(int empno, EmpVO vo) {
+		vo.setEmpno(empno);
+		return empMapper.updateJobSal(vo);
 	}
 }
