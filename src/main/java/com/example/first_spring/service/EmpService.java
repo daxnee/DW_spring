@@ -17,6 +17,7 @@ public class EmpService {
 	@Autowired
 	private EmpMapper empMapper;
 	
+	//0513 모든 emp사원 구하기 
 	public List<EmpVO> getAllEmp(){
 		return empMapper.selectAllEmp();
 	}

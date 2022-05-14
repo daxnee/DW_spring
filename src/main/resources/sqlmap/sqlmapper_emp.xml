@@ -124,6 +124,7 @@
 
 	</select>
 	
+	<!-- 부서 번호가 10,30 이고 급여가 (파라미터값) 이상인 사람을 조회 -->
 	<select id="selectEmpHowSal" resultType="EmpVO">
 	select
 		ENAME,
