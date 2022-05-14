@@ -22,6 +22,11 @@ public class EmpService {
 		return empMapper.selectAllEmp();
 	}
 	
+	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
+	public List<EmpVO> getSelectEmpSal(int sal){
+		return empMapper.SelectEmpSal(sal);
+	}
+	
 	public List<EmpVO> getEmpMaxSal(String hiredate){
 		return empMapper.selectEmpMaxSal(hiredate);
 	}

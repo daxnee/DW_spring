@@ -17,8 +17,10 @@ public interface EmpMapper {
 	 * comment : emp테이블 전체사원 조회
 	 */
 	
+	//0513 모든 emp사원 구하기 
 	public List<EmpVO> selectAllEmp();
 	
+	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
 	public List<EmpVO> SelectEmpSal(int sal);
 
 	public List<EmpVO> selectEmpMaxSal(String hiredate);

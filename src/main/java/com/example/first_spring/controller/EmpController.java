@@ -23,8 +23,7 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 	
-	//전체 사원 조회
-	//0513
+	//0513 모든 emp사원 구하기 
 	@CrossOrigin(origins = {"*"}) // 보안 허용 : 내 자원을 가져다 쓸 수 있게 설정
 	@GetMapping("/emp")
 	public List<EmpVO> callAllEmp() {
@@ -32,6 +31,7 @@ public class EmpController {
 	}
 	
 	
+	//0513
 	// 파라미터 넣어보기 
 	// @PathVariable : {}로 들어온 값을 파라미터에 대입
 	@CrossOrigin(origins = {"*"})

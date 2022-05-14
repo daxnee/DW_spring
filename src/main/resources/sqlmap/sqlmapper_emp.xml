@@ -13,10 +13,9 @@
 	FROM 
 	  emp
 	 ordey by 1 
-
 	</select>
 	
-	<!-- selectAllEmp -->
+	<!-- 0513 모든 emp사원 구하기  -->
 	<select id="selectAllEmp" resultType="EmpVO">
 	SELECT 
 		 *
