@@ -23,6 +23,7 @@ public interface EmpMapper {
 	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
 	public List<EmpVO> SelectEmpSal(int sal);
 
+	// (12월 입사자) 중 sal가 가장 높은 사원 조회
 	public List<EmpVO> selectEmpMaxSal(String hiredate);
 	
 	public List<EmpVO> selectEmpMax(String hiredate);

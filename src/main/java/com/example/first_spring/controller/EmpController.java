@@ -31,6 +31,12 @@ public class EmpController {
 	}
 	
 	
+	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
+	public List<EmpVO> callEmpSal(int sal){
+		return empService.getSelectEmpSal(sal);
+	}
+	
+	
 	//0513
 	// 파라미터 넣어보기 
 	// @PathVariable : {}로 들어온 값을 파라미터에 대입
@@ -40,22 +46,18 @@ public class EmpController {
 		return empService.getEmp(empno);
 	}
 	
-//	@GetMapping("emp/sal/{sal}")
-//	public List<EmpVO> callEmpSal(@PathVariable("sal")int sal){
-//		return empService.selectEmpHowSal(sal);
-//	}
 	
+	@GetMapping("/emp/hiredate/month/{month}")
+	public List<EmpVO> callEmpMaxSal(String hiredate){
+		return empService.getEmpMaxSal(hiredate);
+	}
 		
 	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
 	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
 	return empService.selectEmpWhereJobAndSal(job, sal);
 	}
 	
-
-	@GetMapping("/emp/hiredate/month/{month}")
-	public List<EmpVO> callEmpMaxSal(String hiredate){
-		return empService.getEmpMaxSal(hiredate);
-	}
+	
 	
 	@GetMapping("/emp/hiredate/year/{year}")
 	public List<EmpVO> callEmpHiredate(@PathVariable("year") String hireYear){
