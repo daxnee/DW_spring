@@ -109,7 +109,7 @@
 	
 	<!-- 여기부터 -->
 	
-	<!-- 입사년도가 1981 -->
+	<!-- 입사년도가 1981인 사람  -->
 	<select id="selectEmpHiredate" resultType="EmpVO">
 	SELECT
 		*

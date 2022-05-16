@@ -93,17 +93,15 @@ public class EmpService {
 	}
 
 	
-	//0509 문제1
+	//0509 입사년도가 1981년도인 사원을 조회
 	public List<EmpVO> selectEmpHiredate(String hiredate){
-		List<EmpVO> list = empMapper.selectEmpHiredate(hiredate);
-		int size = list.size();
-		if(size <= 3) {
-			String year = "1981";
+		List<EmpVO> list = empMapper.selectEmpHiredate(hiredate); //1981인 사원을 list에 담고
+		int size = list.size(); // 리스트 길이
+		if(size <= 3) { // 1981년인 사람이 3명 이하면
+			String year = "1981"; // 
 			list = empMapper.selectEmpHiredate(year);
 		}
-		
 		return list;
-		
 	} 
 	
 	//rollbackFor: 이전 commit으로 돌아감
