@@ -26,23 +26,26 @@ public interface EmpMapper {
 	// (12월 입사자) 중 sal가 가장 높은 사원 조회
 	public List<EmpVO> selectEmpMaxSal(String hiredate);
 	
+	
+	// (12월 입사자) 중 sal가 가장 높은 사원 조회2
 	public List<EmpVO> selectEmpMax(String hiredate);
 	
-	public List<EmpVO> getEmpComm();//
 	
-	public List<EmpVO> getEmpHireDate();
-	
-	public List<EmpVO> getEmpRemoveCount(int empno);
+	// (empno)인 사원 조회
+	public EmpVO getEmpEmpno(int empno);
 	
 	
-	public EmpVO getEmp(int empno);
-	
-	//0509문제1
+	//0509 문제. job이 manager이고 sal이 2500이상받는 사원comm을 500으로 업데이트 후
+	// 사원이름,직업,커미션 조회
 	public List<EmpVO> selectEmpWhereJobAndSal(
 		@Param("job") String job,
 		@Param("sal") int sal); 
 	// 파라미터가 2개 이상일때는 @Param 사용!
 
+	// 특정 empno 사원 delete
+	public List<EmpVO> getEmpRemoveCount(int empno);
+	
+	// 부서 번호가 10,30 이고 급여가 (파라미터값) 이상인 사람을 조회
 	public List<EmpVO> selectEmpHowSal(int sal);
 
 	
@@ -88,6 +91,9 @@ public interface EmpMapper {
 	
 	
 	public List<Map<String, Object>> selectEmpMapList();
+	//Map안에 Object를 넣어준 이유는 key(Mybatis 컬럼명)의 value 값 타입이 어떻게 올지 몰라서 
+	// 타입 모두를 포함하는 부모인 Object를 사용
+	
 	
 	//0513 
 	public int updateJobSal(EmpVO vo);

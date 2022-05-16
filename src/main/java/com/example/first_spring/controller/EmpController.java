@@ -37,26 +37,38 @@ public class EmpController {
 	}
 	
 	
-	//0513
+	// (empno)인 사원 조회
 	// 파라미터 넣어보기 
 	// @PathVariable : {}로 들어온 값을 파라미터에 대입
 	@CrossOrigin(origins = {"*"})
 	@GetMapping("/emp/{empNo}")
 	public EmpVO callEmp(@PathVariable("empNo") int empno) {
-		return empService.getEmp(empno);
+		return empService.getEmpEmpno(empno);
 	}
 	
 	
+	//()월 입사자 중 sal이 가장 높은 사원 조회
 	@GetMapping("/emp/hiredate/month/{month}")
 	public List<EmpVO> callEmpMaxSal(String hiredate){
 		return empService.getEmpMaxSal(hiredate);
 	}
-		
-	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다.  ex) MANAGER
+	
+	//(12)월 입사자 중 sal이 가장 높은 사원 조회2 //일단 보류
+	@GetMapping("/emp/hiredate/sal/month/{month}") 
+	public List<EmpVO> callEmpMax(@PathVariable("month") String hiredate){
+		return empService.selectEmpMax(hiredate);
+	}
+	
+	@GetMapping("/emp/hiredate/sal/{sal}") 
+	public List<EmpVO> callEmpHowSal(@PathVariable("sal") int sal){
+		return empService.selectEmpHowSal(sal);
+	}
+
+	
+	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다. -ex) MANAGER
 	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
 	return empService.selectEmpWhereJobAndSal(job, sal);
 	}
-	
 	
 	
 	@GetMapping("/emp/hiredate/year/{year}")
@@ -75,7 +87,7 @@ public class EmpController {
 		 return empService.setEmpInfo(empVO); 
 	}
 	
-	// : 자원 삭제할 때 사용
+
 	//0513
 	@CrossOrigin(origins = {"*"})
 	@DeleteMapping("/emp/empno/{empNo}") 

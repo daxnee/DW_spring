@@ -1,5 +1,6 @@
 package com.example.first_spring.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +28,39 @@ public class EmpService {
 		return empMapper.SelectEmpSal(sal);
 	}
 	
+	//()월 입사자 중 sal이 가장 높은 사원 조회 - 숙제 3번
 	public List<EmpVO> getEmpMaxSal(String hiredate){
 		return empMapper.selectEmpMaxSal(hiredate);
 	}
 	
-	public EmpVO getEmp(int empno) {
-		return empMapper.getEmp(empno);
+	//()월 입사자 중 sal이 가장 높은 사원 조회 2번째 방법
+	public List<EmpVO> selectEmpMax(String hiredate){
+		 int max = 0 ;
+		 EmpVO vo = null;
+		 List<EmpVO> list = empMapper.selectEmpMax(hiredate);
+//		EmpVO vo = null;
+		 for(int i=0; i<list.size(); i++) {
+			 if(max < list.get(i).getSal()) {
+				 max = list.get(i).getSal();
+				 if(max == list.get(i).getSal()) {
+					 vo = list.get(i);
+				 }
+			 }
+		 }
+		 List<EmpVO> maxSalList = new ArrayList<EmpVO>();
+		 maxSalList.add(vo);
+		 return maxSalList;
 	}
 	
+
+	// (empno)인 사원 조회
+	// 왜 리턴타입이 클래스(EmpVO)인가? : pk로 조회하는건 단일행이니까!
+	public EmpVO getEmpEmpno(int empno) {
+		return empMapper.getEmpEmpno(empno);
+	}
+	
+	//0509 문제. job이 manager이고 sal이 2500이상받는 사원comm을 500으로 업데이트 후
+	// 사원이름,직업,커미션 조회
 	@Transactional(rollbackFor = {Exception.class})
 	public List<EmpVO> selectEmpWhereJobAndSal(String job, int sal) {
 		if(job.equals("SALESMAN")) {// 만약 job이 salesman이라면 return null;  
@@ -77,6 +103,7 @@ public class EmpService {
 		}
 		
 		return list;
+		
 	} 
 	
 	//rollbackFor: 이전 commit으로 돌아감
@@ -98,6 +125,7 @@ public class EmpService {
 	}
 	
 	//delete
+	// 특정 empno 사원 delete
 	@Transactional(rollbackFor = {Exception.class})
 	public int getEmpRemoveCount(int empno) {
 		int rows = empMapper.deleteEmp(empno);

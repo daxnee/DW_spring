@@ -25,6 +25,7 @@
 	  ORDER BY empno ASC
 	</select>
 	
+	<!--job이 SALESMAN이면서 sal이 파라미터값인 사원 조회 -->
 	<select id="SelectEmpSal" resultType="EmpVO">
 	select 
 	  * 
@@ -36,8 +37,8 @@
 
 	</select>
 	
+	<!-- #{}월 입사자 중 sal이 가장 높은 사원 조회 -->
 	<select id="selectEmpMaxSal" resultType="EmpVO">
-	<!-- 문제 3. 급여가 가장 높은 사원 조회 -->
 	    select 
       ENAME, 
       sal 
@@ -56,59 +57,30 @@
       and date_format(HIREDATE, '%m') = #{HIREDATE}
 	</select>
 	
+	 <!-- #{}월 입사자 중 sal이 가장 높은 사원 조회2 -->
 	<select id="selectEmpMax" resultType="EmpVO">
 	select 
       ENAME, 
-      sal 
+      sal,
+      date_format(hiredate, '%m')
     from 
       emp 
     where 
-      date_format(HIREDATE, '%m') = '12'
+      date_format(hiredate, '%m') = #{hiredate}
 	</select>
 		
 	
-	<select id="getEmpName" resultType="EmpVO">
-	SELECT 
-      * 
-    FROM 
-      emp 
-    WHERE 
-      ename LIKE "%LL%";
-
-	</select>
-	
-	<select id="getEmpComm" resultType="EmpVO">
-	SELECT 
-      ename, 
-      comm 
-    FROM 
-      emp 
-    WHERE 
-      comm is null;
-	</select>
-	
-	<select id="getEmpHireDate" resultType="EmpVO">
-	select 
-      ename, 
-      hiredate 
-    FROM 
-      emp 
-    WHERE 
-      hiredate between "1980-12-17" 
-      AND "1982-01-23";
-
-	</select>
-	
-	<select id="getEmp" resultType="EmpVO">
+	<!--#{empno}인 사원 조회 -->
+	<select id="getEmpEmpno" resultType="EmpVO">
 	select 
       * 
     FROM 
       emp 
     WHERE 
       empno = #{empNo}
-
 	</select>
 	
+	<!--job이 manager이고 sal이 2500이상받는 사원comm을 500으로 업데이트 후 사원이름,직업,커미션 조회  -->
 	<select id="selectEmpWhereJobAndSal" resultType="EmpVO">
 	select 
       empno, 
@@ -135,8 +107,9 @@
 		AND SAL > #{sal}
 	</select>
 	
+	<!-- 여기부터 -->
 	
-	
+	<!-- 입사년도가 1981 -->
 	<select id="selectEmpHiredate" resultType="EmpVO">
 	SELECT
 		*
