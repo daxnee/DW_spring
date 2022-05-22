@@ -161,6 +161,8 @@ public class EmpController {
 	public int callApi(@PathVariable("empno") int empno, @RequestBody EmpVO empVO) {
 		return empService.getApi(empno, empVO);
 	} 
+
+	
 	
 }
 	

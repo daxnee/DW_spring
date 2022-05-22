@@ -14,9 +14,10 @@ public class EmpVO extends DeptVO {
 	private int sal;
 	private int comm;
 	private int deptno;
+	private String dname;
 	private String loc;
+	
 
-//	private DeptVO deptVO;
 }
 
 

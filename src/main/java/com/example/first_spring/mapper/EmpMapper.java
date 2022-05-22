@@ -94,9 +94,10 @@ public interface EmpMapper {
 	//Map안에 Object를 넣어준 이유는 key(Mybatis 컬럼명)의 value 값 타입이 어떻게 올지 몰라서 
 	// 타입 모두를 포함하는 부모인 Object를 사용
 	
-	
 	//0513 
 	public int updateJobSal(EmpVO vo);
+	
+
 } 
 
 

@@ -196,4 +196,8 @@ public class EmpService {
 		vo.setEmpno(empno);
 		return empMapper.updateJobSal(vo);
 	}
+	
+	
+	
+	
 }
