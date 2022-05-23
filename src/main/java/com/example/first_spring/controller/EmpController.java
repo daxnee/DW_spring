@@ -31,12 +31,6 @@ public class EmpController {
 	}
 	
 	
-	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
-	public List<EmpVO> callEmpSal(int sal){
-		return empService.getSelectEmpSal(sal);
-	}
-	
-	
 	// (empno)인 사원 조회
 	// 파라미터 넣어보기 
 	// @PathVariable : {}로 들어온 값을 파라미터에 대입
@@ -46,19 +40,7 @@ public class EmpController {
 		return empService.getEmpEmpno(empno);
 	}
 	
-	
-	//()월 입사자 중 sal이 가장 높은 사원 조회
-	@GetMapping("/emp/hiredate/month/{month}")
-	public List<EmpVO> callEmpMaxSal(String hiredate){
-		return empService.getEmpMaxSal(hiredate);
-	}
-	
-	//(12)월 입사자 중 sal이 가장 높은 사원 조회2 //일단 보류
-	@GetMapping("/emp/hiredate/sal/month/{month}") 
-	public List<EmpVO> callEmpMax(@PathVariable("month") String hiredate){
-		return empService.selectEmpMax(hiredate);
-	}
-	
+
 	@GetMapping("/emp/hiredate/sal/{sal}") 
 	public List<EmpVO> callEmpHowSal(@PathVariable("sal") int sal){
 		return empService.selectEmpHowSal(sal);
@@ -66,7 +48,7 @@ public class EmpController {
 
 	
 	@GetMapping("/emp/job/{job}/sal/{sal}") // url 입력할 때 {}안에 해당 파라미터 값을 넣어주면 된다. -ex) MANAGER
-	public List<EmpVO> callEmpList(@PathVariable("job")String job,@PathVariable("sal")int sal){
+	public List<EmpVO> callEmpList(@PathVariable("job")String job, @PathVariable("sal")int sal){
 	return empService.selectEmpWhereJobAndSal(job, sal);
 	}
 	
@@ -125,7 +107,6 @@ public class EmpController {
 	}
 	
 //	@DeleteMapping("/emp/sal/{sal}") 
-//	// 저장
 //	public int callEmpRemoveSal(@PathVariable("sal") int sal) {
 //		return empService.getEmpRemoveSal(sal);
 //	}
@@ -161,7 +142,6 @@ public class EmpController {
 	public int callApi(@PathVariable("empno") int empno, @RequestBody EmpVO empVO) {
 		return empService.getApi(empno, empVO);
 	} 
-
 	
 	
 }

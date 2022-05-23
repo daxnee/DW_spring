@@ -1,11 +1,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.first_spring.mapper.EmpMapper">
-	<select id="getEmpList" resultType="EmpVO"> <!--  resultType="EmpVO : 리턴타입이 EmpVO -->
+	<select id="selectAllEmp" resultType="EmpVO"> <!--  resultType="EmpVO : 리턴타입이 EmpVO -->
 	<!-- 쿼리의 결과값을 EmpVO로 하겠다. -->
 	<!-- 결과값을 위 경로에 설정한 Mapper의 메소드(id="getEmpList")로 return -->
 <!-- MyBatis에게 Mapper 경로를 적어야 한다. -->
 <!-- 대소문자 구분 안함. 대신 오타 주의 -->
-<!-- 0513 -->
 	SELECT 
 	  empno, 
 	  ename, 
@@ -15,15 +14,6 @@
 	 ordey by 1 
 	</select>
 	
-	<!-- 0513 모든 emp사원 구하기  -->
-	<select id="selectAllEmp" resultType="EmpVO">
-	SELECT 
-		 *
-	FROM 
-	  emp as e join dept as d
-	  on e.DEPTNO = d.DEPTNO
-	  ORDER BY empno ASC
-	</select>
 	
 	<!--job이 SALESMAN이면서 sal이 파라미터값인 사원 조회 -->
 	<select id="SelectEmpSal" resultType="EmpVO">
@@ -34,41 +24,8 @@
 	where 
 	  job = "SALESMAN" 
 	  and sal >= #{sal}
-
 	</select>
 	
-	<!-- #{}월 입사자 중 sal이 가장 높은 사원 조회 -->
-	<select id="selectEmpMaxSal" resultType="EmpVO">
-	    select 
-      ENAME, 
-      sal 
-    from 
-      (
-        select 
-          max(sal) as maxSal 
-        from 
-          emp 
-        where 
-          date_format(HIREDATE, '%m') = #{HIREDATE}
-          ) as e, 
-      emp 
-    where 
-      sal = e.maxSal 
-      and date_format(HIREDATE, '%m') = #{HIREDATE}
-	</select>
-	
-	 <!-- #{}월 입사자 중 sal이 가장 높은 사원 조회2 -->
-	<select id="selectEmpMax" resultType="EmpVO">
-	select 
-      ENAME, 
-      sal,
-      date_format(hiredate, '%m')
-    from 
-      emp 
-    where 
-      date_format(hiredate, '%m') = #{hiredate}
-	</select>
-		
 	
 	<!--#{empno}인 사원 조회 -->
 	<select id="getEmpEmpno" resultType="EmpVO">
@@ -81,18 +38,18 @@
 	</select>
 	
 	<!--job이 manager이고 sal이 2500이상받는 사원comm을 500으로 업데이트 후 사원이름,직업,커미션 조회  -->
+	 <!-- Mapper의 메소드 파라미터 @Param의 변수명과 #{}중괄호의 변수 명은 동일해야한다. -->
 	<select id="selectEmpWhereJobAndSal" resultType="EmpVO">
 	select 
       empno, 
       ename, 
       job, 
-      comm 
+      comm
     from 
-      emp 
+      emp
     WHERE 
       job = #{job} 
-      AND sal >= #{sal}
-
+            sal >= #{sal}
 	</select>
 	
 	<!-- 부서 번호가 10,30 이고 급여가 (파라미터값) 이상인 사람을 조회 -->
@@ -158,6 +115,7 @@
 	where 
 		empno = #{empno}
 	</update>
+
 	
 	<!-- 0510  -->
 	<!-- 0510 문제1(1) -->
@@ -171,13 +129,6 @@
 		e.deptno is null 
 	</select>
 	
-	<!-- 문제2 -->
-	<delete id=""> 
-	  DELETE FROM
-		emp 
-	WHERE 
-		sal >= #{sal}
-	</delete>
 	
 	<delete id="getEmpRemoveCount">
 	Delete from
@@ -259,6 +210,5 @@
 	 FROM emp as e INNER JOIN dept as d
 	 ON e.deptno = d.deptno
 	</select> 
-	
 	
 </mapper>

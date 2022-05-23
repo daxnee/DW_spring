@@ -11,13 +11,7 @@ import com.example.first_spring.vo.EmpVO;
 @Mapper 
 public interface EmpMapper {
 	
-//	emp의 사원데이터를 전부 다 가져오기
-	/**
-	 * @return
-	 * comment : emp테이블 전체사원 조회
-	 */
-	
-	//0513 모든 emp사원 구하기 
+	//emp의 사원데이터를 전부 다 가져오기
 	public List<EmpVO> selectAllEmp();
 	
 	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
@@ -41,6 +35,7 @@ public interface EmpMapper {
 		@Param("job") String job,
 		@Param("sal") int sal); 
 	// 파라미터가 2개 이상일때는 @Param 사용!
+	
 
 	// 특정 empno 사원 delete
 	public List<EmpVO> getEmpRemoveCount(int empno);

@@ -15,41 +15,12 @@ import com.example.first_spring.vo.EmpVO;
 @Service
 public class EmpService {
 	
-	@Autowired
+	@Autowired // new로 호출할 필요 없게 설정
 	private EmpMapper empMapper;
 	
 	//0513 모든 emp사원 구하기 
 	public List<EmpVO> getAllEmp(){
 		return empMapper.selectAllEmp();
-	}
-	
-	//job이 SALESMAN이면서 sal이 파라미터값인 사원 조회
-	public List<EmpVO> getSelectEmpSal(int sal){
-		return empMapper.SelectEmpSal(sal);
-	}
-	
-	//()월 입사자 중 sal이 가장 높은 사원 조회 - 숙제 3번
-	public List<EmpVO> getEmpMaxSal(String hiredate){
-		return empMapper.selectEmpMaxSal(hiredate);
-	}
-	
-	//()월 입사자 중 sal이 가장 높은 사원 조회 2번째 방법
-	public List<EmpVO> selectEmpMax(String hiredate){
-		 int max = 0 ;
-		 EmpVO vo = null;
-		 List<EmpVO> list = empMapper.selectEmpMax(hiredate);
-//		EmpVO vo = null;
-		 for(int i=0; i<list.size(); i++) {
-			 if(max < list.get(i).getSal()) {
-				 max = list.get(i).getSal();
-				 if(max == list.get(i).getSal()) {
-					 vo = list.get(i);
-				 }
-			 }
-		 }
-		 List<EmpVO> maxSalList = new ArrayList<EmpVO>();
-		 maxSalList.add(vo);
-		 return maxSalList;
 	}
 	
 
@@ -67,6 +38,7 @@ public class EmpService {
 			return null;
 		}
 		List<EmpVO> list = empMapper.selectEmpWhereJobAndSal(job, sal);
+		// list에 sql쿼리 결과가 담아져 있음
 		int comm = 500; //커미션
 		int rows = 0;
 		
@@ -77,14 +49,15 @@ public class EmpService {
 //			list.get(i).setComm(sum);
 			
 			list.get(i).setComm(comm);
+			int empno = list.get(i).getEmpno();
+			System.out.println("empno ====> "+empno);
 			EmpVO vo = list.get(i);
-			vo.setComm(comm);
+			System.out.println(vo);
 			rows += empMapper.updateEmp(vo);
 		}
 		if(rows>0) {
-			return empMapper.selectEmpWhereJobAndSal(job, sal);
+			return list; //  리턴 수(쿼리 결과 행 개수)가 0보다 크면
 		}
-		
 		return null;
 	}
 	
@@ -138,6 +111,9 @@ public class EmpService {
 		return rows; 
 		//return empMapper.updateEmp(vo); //이것도 가능
 	}
+	
+
+	
 	
 	public EmpVO getEmpDeptNo() {
 		return empMapper.selectDeptNo();
