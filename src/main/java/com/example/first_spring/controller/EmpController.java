@@ -104,7 +104,7 @@ public class EmpController {
 		System.out.println("한 페이지에 보여주는 row 수 : "+ pageSize );
 		System.out.println("작성자는 : " + writer);
 		return 0;
-	}
+	}//
 	
 //	@DeleteMapping("/emp/sal/{sal}") 
 //	public int callEmpRemoveSal(@PathVariable("sal") int sal) {
