@@ -115,6 +115,17 @@
 	where 
 		empno = #{empno}
 	</update>
+	
+	<!-- 0509 -->
+	<update id="updateEmpno">
+	update 
+		emp 
+	set 
+		job = #{job}
+		sal = #{sal}
+	where 
+		empno = #{empno}
+	</update>
 
 	
 	<!-- 0510  -->

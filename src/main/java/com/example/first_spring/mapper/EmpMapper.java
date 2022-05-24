@@ -36,6 +36,7 @@ public interface EmpMapper {
 		@Param("sal") int sal); 
 	// 파라미터가 2개 이상일때는 @Param 사용!
 	
+	
 
 	// 특정 empno 사원 delete
 	public List<EmpVO> getEmpRemoveCount(int empno);
@@ -91,6 +92,8 @@ public interface EmpMapper {
 	
 	//0513 
 	public int updateJobSal(EmpVO vo);
+	
+
 	
 
 } 

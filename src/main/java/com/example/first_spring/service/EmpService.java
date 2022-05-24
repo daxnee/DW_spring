@@ -49,11 +49,8 @@ public class EmpService {
 //			list.get(i).setComm(sum);
 			
 			list.get(i).setComm(comm);
-			int empno = list.get(i).getEmpno();
-			System.out.println("empno ====> "+empno);
 			EmpVO vo = list.get(i);
-			System.out.println(vo);
-			rows += empMapper.updateEmp(vo);
+			rows += empMapper.updateEmpno(vo);
 		}
 		if(rows>0) {
 			return list; //  리턴 수(쿼리 결과 행 개수)가 0보다 크면
